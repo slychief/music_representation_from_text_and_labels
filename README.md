@@ -21,7 +21,8 @@ One Model for each experiment
 
 * MSD audio samples
 * MSD AMG Tagsets
-** download from ... TODO
+** Tagsets can be downloaded from https://github.com/tuwien-musicir/msd/tree/master/ground_truth_assignments/AMG_Multilabel_tagsets
+** for the experiments the hdf5 archive "msd_amglabels_all.h5" is used
 * MSD AMG Album Reviews
 
 ## Align your Data
