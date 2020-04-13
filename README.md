@@ -38,7 +38,9 @@ One Model for each experiment
 ** for the experiments the hdf5 archive "msd_amglabels_all.h5" is used
 * MSD AMG Album Reviews
 
-## Align your Data
+## Run Experiments
+
+'''1. Align your Data'''
 
 * Execute Notebook: 1 - Prepare Experiment Metadata.ipynb
 ** Supply configuration values in first cell
@@ -51,10 +53,50 @@ This notebook
 Published experimental results:
 * In directory ..paper.. we provide our mappings for comparison
 
-## Extract Mel-Spectrograms
+'''2. Extract Mel-Spectrograms'''
 
 * extract Mel-Spectrograms for the audio models
 
-TODO: example script 
+<pre>
+
+usage: melspecs_extract.py [-h] [--tidfile TIDFILE] [--dst DST]
+                           [--workers WORKERS] [--test] [--crop] [--pad]
+                           [--skip] [--precision PRECISION]
+                           [--log-level LOG_LEVEL]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --tidfile TIDFILE
+  --dst DST
+  --workers WORKERS
+  --test
+  --crop
+  --pad
+  --skip
+  --precision PRECISION
+  --log-level LOG_LEVEL
+
+</pre>
+
+* merge extracted features to numpy arcive
+
+<pre>
+
+usage: melspecs_merge.py [-h] [--tidfile TIDFILE] [--src SRC] [--dst DST]
+                         [--crop] [--pad] [--log-level LOG_LEVEL]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --tidfile TIDFILE
+  --src SRC
+  --dst DST
+  --crop
+  --pad
+  --log-level LOG_LEVEL
+
+</pre>
+
+
+
 
 ## 
