@@ -4,27 +4,24 @@ import logging
 logging.basicConfig(format='%(asctime)s %(levelname)s: %(message)s', level=logging.DEBUG, datefmt='%Y-%m-%d %H:%M:%S')
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--tidfile',    type=str)
-parser.add_argument('--dst',        type=str)
-parser.add_argument('--workers',    type=int)
-parser.add_argument('--test', action='store_true')
-parser.add_argument('--crop', action='store_true')
-parser.add_argument('--pad', action='store_true')
-parser.add_argument('--skip', action='store_true')
-parser.add_argument('--precision',  type=int, default=32)
+parser.add_argument('--tidfile',    type=str, help="Path to trackid partition file.")
+parser.add_argument('--dst',        type=str, help="Path to directory to store intermediate features")
+parser.add_argument('--workers',    type=int, help="Number of processes for feature extraction.")
+parser.add_argument('--crop', action='store_true', help="Crop longer audio files")
+parser.add_argument('--pad', action='store_true', help="Zero-pad shorter audio files")
+parser.add_argument('--skip', action='store_true', help="Skip if feature files already exist.")
+parser.add_argument('--precision',  type=int, default=32, help="Store features with 16bit or 32bit precision")
 parser.add_argument("--log-level",  default=logging.DEBUG, type=lambda x: getattr(logging, x), help="Configure the logging level.")
+#parser.add_argument('--test', action='store_true', help="Development parameter. Only process one file")
+
 
 args = parser.parse_args()
                           
 logging.basicConfig(level=args.log_level)
 
-MONO = True
-
-
 import time
 import random
 from multiprocessing import Pool
-
 
 import pandas as pd
 import librosa
@@ -34,13 +31,10 @@ import numpy as np
 from tqdm import tqdm
 import traceback
 
-
 import warnings
 warnings.filterwarnings('ignore')
 
-SRC_PATH = "/mnt/dataset_storage/audio/music/MSD/audio/"
 DST_PATH = args.dst
-
 
 DST_SAMPLERATE = 22050
 N_FFT          = 1024
@@ -73,9 +67,8 @@ def extract_melspec(y, sample_rate):
 
 
 
-def extract(track_id):
+def extract(track_id, f_name):
     
-    f_name    = SRC_PATH + track_id[2] + "/" + track_id[3] + "/" + track_id[4] + "/" + track_id + ".mp3"
     dst_fname = DST_PATH + "/" + track_id + ".npz"
     
     if not (args.skip and os.path.exists(dst_fname)):
@@ -161,7 +154,7 @@ def extract(track_id):
 #exit(0)
 
 tids = pd.read_csv(args.tidfile, header=None)
-tids.columns = ["track_id"]
+tids.columns = ["track_id", "filename"]
 
 pool = Pool(args.workers)
 
@@ -172,7 +165,7 @@ def update(*a):
     pbar.set_description(str(a))
     
 for i in range(pbar.total):
-    pool.apply_async(extract, args=(tids.iloc[i].track_id,), callback=update)
+    pool.apply_async(extract, args=(tids.iloc[i].track_id, tids.iloc[i].filename,), callback=update)
 
 pool.close()
 pool.join()
