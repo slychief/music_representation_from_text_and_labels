@@ -40,7 +40,7 @@ One Model for each experiment
 
 ## Run Experiments
 
-'''1. Align your Data'''
+**1. Align your Data**
 
 * Execute Notebook: 1 - Prepare Experiment Metadata.ipynb
 ** Supply configuration values in first cell
@@ -53,28 +53,27 @@ This notebook
 Published experimental results:
 * In directory ..paper.. we provide our mappings for comparison
 
-'''2. Extract Mel-Spectrograms'''
+**2. Extract Mel-Spectrograms**
 
 * extract Mel-Spectrograms for the audio models
 
 <pre>
 
 usage: melspecs_extract.py [-h] [--tidfile TIDFILE] [--dst DST]
-                           [--workers WORKERS] [--test] [--crop] [--pad]
-                           [--skip] [--precision PRECISION]
-                           [--log-level LOG_LEVEL]
+                           [--workers WORKERS] [--crop] [--pad] [--skip]
+                           [--precision PRECISION] [--log-level LOG_LEVEL]
 
 optional arguments:
-  -h, --help            show this help message and exit
-  --tidfile TIDFILE
-  --dst DST
-  --workers WORKERS
-  --test
-  --crop
-  --pad
-  --skip
-  --precision PRECISION
-  --log-level LOG_LEVEL
+  -h, --help             show this help message and exit
+  --tidfile TIDFILE      Path to trackid partition file.
+  --dst DST              Path to directory to store intermediate features
+  --workers WORKERS      Number of processes for feature extraction.
+  --crop                 Crop longer audio files
+  --pad                  Zero-pad shorter audio files
+  --skip                 Skip if feature files already exist.
+  --precision PRECISION  Store features with 16bit or 32bit precision
+  --log-level LOG_LEVEL  Configure the logging level.
+
 
 </pre>
 
@@ -96,7 +95,3 @@ optional arguments:
 
 </pre>
 
-
-
-
-## 
