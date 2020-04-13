@@ -71,6 +71,7 @@ def extract(track_id, f_name):
     
     dst_fname = DST_PATH + "/" + track_id + ".npz"
     success   = False
+    msg       = None
     
     if not (args.skip and os.path.exists(dst_fname)):
 
@@ -146,11 +147,17 @@ def extract(track_id, f_name):
             success = True
             
         except Exception as e:
+            msg = e.msg
             print(e)
             traceback.print_exc()
             pass
+            
+    else:
+        # skip
+        success   = True
+        msg       = "skip"
 
-    return track_id, success
+    return track_id, success, msg
 
 
 # read partition file
@@ -170,7 +177,7 @@ else:
 def update(*a):
     pbar.update()
     #pbar.set_description(str(a))
-    results.append(a)
+    results.append(a[0])
     
 for i in range(pbar.total):
     pool.apply_async(extract, args=(tids.iloc[i].track_id, tids.iloc[i].filename,), callback=update)
@@ -178,4 +185,7 @@ for i in range(pbar.total):
 pool.close()
 pool.join()
 
-print(results)
+results = pd.DataFrame(results, columns=["trackid", "success", "error_msg"])
+results = results.set_index("trackid")
+
+results.to_csv(args.tidfile + ".melspec_extract.log.csv")
