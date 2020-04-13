@@ -174,6 +174,8 @@ def update(*a):
     
 for i in range(pbar.total):
     pool.apply_async(extract, args=(tids.iloc[i].track_id, tids.iloc[i].filename,), callback=update)
-
+    
 pool.close()
 pool.join()
+
+print(results)
