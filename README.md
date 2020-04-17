@@ -55,43 +55,11 @@ Published experimental results:
 
 **2. Extract Mel-Spectrograms**
 
-* extract Mel-Spectrograms for the audio models
-
-<pre>
-
-usage: melspecs_extract.py [-h] [--tidfile TIDFILE] [--dst DST]
-                           [--workers WORKERS] [--crop] [--pad] [--skip]
-                           [--precision PRECISION] [--log-level LOG_LEVEL]
-
-optional arguments:
-  -h, --help             show this help message and exit
-  --tidfile TIDFILE      Path to trackid partition file.
-  --dst DST              Path to directory to store intermediate features
-  --workers WORKERS      Number of processes for feature extraction.
-  --crop                 Crop longer audio files
-  --pad                  Zero-pad shorter audio files
-  --skip                 Skip if feature files already exist.
-  --precision PRECISION  Store features with 16bit or 32bit precision
-  --log-level LOG_LEVEL  Configure the logging level.
-
-
-</pre>
+* Execute Notebook: 2 - Prepare Audio Data.ipynb
+** Supply configuration values in first cell
+** This notebook can also be executed as command-line script
+*** Export as python script in browser or use nbconvert to convert the notebook to a python script
 
 * merge extracted features to numpy arcive
 
-<pre>
-
-usage: melspecs_merge.py [-h] [--tidfile TIDFILE] [--src SRC] [--dst DST]
-                         [--crop] [--pad] [--log-level LOG_LEVEL]
-
-optional arguments:
-  -h, --help            show this help message and exit
-  --tidfile TIDFILE
-  --src SRC
-  --dst DST
-  --crop
-  --pad
-  --log-level LOG_LEVEL
-
-</pre>
 
