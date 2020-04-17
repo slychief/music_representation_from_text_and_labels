@@ -43,8 +43,8 @@ One Model for each experiment
 **1. Align your Data**
 
 * Execute Notebook: 1 - Prepare Experiment Metadata.ipynb
-** Supply configuration values in first cell
-** execute all remaining cells
+    * Supply configuration values in first cell
+    * execute all remaining cells
 
 This notebook 
 * aligns your MSD audio samples with the AMG Tagsets and the AMG album reviews.
@@ -56,9 +56,13 @@ Published experimental results:
 **2. Extract Mel-Spectrograms**
 
 * Execute Notebook: 2 - Prepare Audio Data.ipynb
-** Supply configuration values in first cell
-** This notebook can also be executed as command-line script
-*** Export as python script in browser or use nbconvert to convert the notebook to a python script
+    * Supply configuration values in first cell
+    * This notebook can also be executed as command-line script
+        *Export as python script in browser or use nbconvert to convert the notebook to a python script
+
+**3. Create Evaluation Partitions**
+
+**4. Merge Data**
 
 * merge extracted features to numpy arcive
 
