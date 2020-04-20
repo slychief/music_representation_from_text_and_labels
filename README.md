@@ -42,7 +42,7 @@ One Model for each experiment
 
 **1. Align your Data**
 
-* Execute Notebook: 1 - Prepare Experiment Metadata.ipynb
+* Execute Notebook: [1 - Prepare Experiment Metadata.ipynb](../lob/master/1 - Perpare Experimemnt Metadata.ipynb)
     * Supply configuration values in first cell
     * execute all remaining cells
 
@@ -61,6 +61,8 @@ Published experimental results:
         *Export as python script in browser or use nbconvert to convert the notebook to a python script
 
 **3. Create Evaluation Partitions**
+
+* Execute Notebook: 3 - Create Evaluation Partitions.ipynb
 
 **4. Merge Data**
 
