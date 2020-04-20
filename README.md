@@ -42,7 +42,7 @@ One Model for each experiment
 
 **1. Align your Data**
 
-* Execute Notebook: [1 - Prepare Experiment Metadata.ipynb](../lob/master/1 - Perpare Experimemnt Metadata.ipynb)
+* Execute Notebook: [../blob/master/1 - Perpare Experimemnt Metadata.ipynb]
     * Supply configuration values in first cell
     * execute all remaining cells
 
